@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#EC4899" />
+    <!-- Applies the saved theme (light/dark + accent colour) BEFORE React renders, so a refresh never flashes the wrong colours. -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem("voiceshop_theme") || "light";
+          var dark = mode === "dark" || (mode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+          var a = JSON.parse(localStorage.getItem("voiceshop_accent") || "null");
+          if (a && a.rgb) {
+            var st = document.documentElement.style;
+            st.setProperty("--brand-rgb", a.rgb);
+            st.setProperty("--brand-dark-rgb", a.dark);
+            st.setProperty("--brand-light-rgb", a.light);
+          }
+          var lang = localStorage.getItem("voiceshop_ui_lang");
+          if (lang === "ta") document.documentElement.lang = "ta";
+        } catch (e) {}
+      })();
+    </script>
+    <title>VoiceShop | Voice Enabled Online Shopping</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
